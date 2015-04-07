@@ -36,6 +36,10 @@
   "SELECT :value, :other_value, 5::text FROM dual"
   => ["SELECT " value ", " other_value ", 5::text FROM dual"]
 
+  ;; Assignment
+  "DECLARE some varchar:='a value';BEGIN SELECT :value, :other_value FROM dual;END;"
+  => ["DECLARE some varchar:='a value';BEGIN SELECT " value ", " other_value " FROM dual;END;"]
+
   ;; Complex
   "SELECT :a+2*:b+age::int FROM users WHERE username = ? AND :b > 0"
   => ["SELECT " a "+2*" b "+age::int FROM users WHERE username = " ? " AND " b " > 0"]
